@@ -1,13 +1,31 @@
 #!/bin/bash
 
 
-sudo yum install httpd -y
-systemctl status httpd
-sudo systemctl start httpd
-sudo systemctl enable httpd
+sudo apt update
+sudo apt install apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
 
-sudo dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y
-sudo mv wordpress/* /var/www/html
-sudo systemctl restart httpd
 
-wget https://wordpress.org/latest.tar.gz
+sudo mkdir -p /srv/www
+sudo chown www-data: /srv/www
+curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+
+
+
+
+
+
+
+
